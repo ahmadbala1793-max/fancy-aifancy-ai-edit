@@ -615,7 +615,7 @@ class LlmEngineService : Service() {
 
     internal fun sampleBenchmarkMemory() {
         if (!benchmarkSampling) return
-        benchmarkPeakPssKilobytes.accumulateAndGet(Debug.getPss(), ::maxOf)
+        benchmarkPeakPssKilobytes.accumulateAndGet(Debug.getPss().toLong(), ::maxOf)
         val manager = getSystemService(ActivityManager::class.java)
         val availableBytes = ActivityManager.MemoryInfo().also(manager::getMemoryInfo).availMem
         benchmarkMinimumAvailableMemoryBytes.accumulateAndGet(availableBytes) { previous, sample ->

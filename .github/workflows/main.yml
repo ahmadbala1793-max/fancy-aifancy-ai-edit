@@ -1,4 +1,3 @@
-
 name: FANCY AI Android Build
 
 on:
@@ -22,6 +21,10 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: |
+            platform-tools
+            platforms;android-37
 
       - name: Install Android NDK
         run: sdkmanager "ndk;30.0.16248370"
@@ -36,3 +39,6 @@ jobs:
         with:
           name: FANCY-AI-APK
           path: app/build/outputs/apk/debug/*.apk
+
+
+

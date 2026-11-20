@@ -18,7 +18,7 @@ object LiteRtTranscript {
             val imagePath = exchange.input.imagePath
             add(
                 Message.user(
-                    if (imagePath == null) Contents.of(text)
+                    if (imagePath.isNullOrBlank()) Contents.of(text)
                     else Contents.of(Content.ImageFile(imagePath), Content.Text(text)),
                 ),
             )

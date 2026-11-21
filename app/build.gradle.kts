@@ -1,3 +1,4 @@
+
 import com.android.build.api.dsl.ApplicationExtension
 import java.util.Properties
 
@@ -28,13 +29,13 @@ val releaseKeystoreProperties = providers.of(PropertiesFileValueSource::class.ja
 
 extensions.configure<ApplicationExtension> {
     namespace = "com.mrj.fancyai"
-    compileSdk = 37
+    compileSdk = 36
     ndkVersion = "30.0.16248370"
 
     defaultConfig {
         applicationId = "com.mrj.fancyai.github"
         minSdk = 33
-        targetSdk = 37
+        targetSdk = 36
         versionCode = 94
         versionName = "4.74"
         ndk {
@@ -48,7 +49,6 @@ extensions.configure<ApplicationExtension> {
 
     packaging {
         jniLibs {
-            // Native merging runs before ABI filtering; Sherpa also bundles an x86 ORT.
             excludes += "lib/x86/libonnxruntime.so"
             excludes += "**/libcdsprpc.so"
             excludes += "**/libOpenCL.so"

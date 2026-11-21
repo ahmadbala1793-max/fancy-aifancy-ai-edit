@@ -11,67 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v5
-        with:
-          distribution: temurin
-          java-version: '21'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Accept licenses
-        run: yes | sdkmanager --licenses || true
-
-      - name: Build APK
-        run: |
-          chmod +x gradlew
-          ./gradlew :app:assembleDebug --stacktrace
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: FANCY-AI-APK
-          path: app/build/outputs/apk/debug/*.apk
-          if-no-files-found: error
-name: FANCY AI Android Build
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Java
-        uses: actions/setup-java@v5
+      - name: Set up Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
 
-      - name: Setup Android SDK
+      - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android packages
-        run: |
-          sdkmanager --install \
-            "platform-tools" \
-            "platforms;android-37" \
-            "ndk;30.0.16248370"
-
-      - name: Accept Android licenses
-        run: yes | sdkmanager --licenses || true
-
-      - name: Build FANCY AI APK
+      - name: Build debug APK
         run: |
           chmod +x gradlew
           ./gradlew :app:assembleDebug --stacktrace
@@ -82,5 +34,3 @@ jobs:
           name: FANCY-AI-APK
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
-defaults:
-  

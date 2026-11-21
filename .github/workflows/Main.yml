@@ -1,5 +1,5 @@
 name: FANCY AI Android Build
-
+name: FANCY AI Android Build
 on:
   push:
     branches: [main]
